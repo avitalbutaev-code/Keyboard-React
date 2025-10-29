@@ -7,8 +7,14 @@ function Display() {
     setDisplay(display + character);
   }
   function handleBackSpace() {
-    console.log("sdj");
     setDisplay(display.slice(0, -1));
+  }
+  function deleteAll() {
+    setDisplay("");
+  }
+
+  function allToUpperCase() {
+    setDisplay(display.toUpperCase());
   }
   return (
     <div>
@@ -16,6 +22,8 @@ function Display() {
       <CommandCenter
         handleDisplayChange={handleDisplayChange}
         handleBackSpace={handleBackSpace}
+        deleteAll={deleteAll}
+        allToUpperCase={allToUpperCase}
       />
     </div>
   );
