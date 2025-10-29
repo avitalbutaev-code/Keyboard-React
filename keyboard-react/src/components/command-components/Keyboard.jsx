@@ -1,5 +1,6 @@
 import React from "react";
 import CommandCenter from "../CoomandCenter";
+import { useState } from "react";
 function Keyboard({
   language,
   handleDisplayChange,
@@ -7,6 +8,7 @@ function Keyboard({
   deleteAll,
   allToUpperCase,
 }) {
+  const [calledUpperCase, setUpperCase] = useState(false);
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   const enLetters = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -41,6 +43,13 @@ function Keyboard({
   return (
     <>
       <div className="keyboard commandCenter">
+        <button
+          key="upperCaseBtn"
+          className="key-button"
+          onClick={() => setUpperCase((prev) => !prev)}
+        >
+          Caps
+        </button>
         <button
           key="allUpperCaseBtn"
           className="key-button"
@@ -82,7 +91,13 @@ function Keyboard({
           <div key={index} className="keyboard-row">
             {line.map((letter) => (
               <button
-                onClick={() => handleDisplayChange(letter)}
+                onClick={() =>
+                  handleDisplayChange(
+                    calledUpperCase
+                      ? letter.toUpperCase()
+                      : letter.toLowerCase()
+                  )
+                }
                 key={letter}
                 className="key-button"
               >
