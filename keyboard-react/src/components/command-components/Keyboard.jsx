@@ -1,6 +1,12 @@
 import React from "react";
 import CommandCenter from "../CoomandCenter";
-function Keyboard({ language, handleDisplayChange, handleBackSpace }) {
+function Keyboard({
+  language,
+  handleDisplayChange,
+  handleBackSpace,
+  deleteAll,
+  allToUpperCase,
+}) {
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   const enLetters = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -35,6 +41,20 @@ function Keyboard({ language, handleDisplayChange, handleBackSpace }) {
   return (
     <>
       <div className="keyboard commandCenter">
+        <button
+          key="allUpperCaseBtn"
+          className="key-button"
+          onClick={() => allToUpperCase()}
+        >
+          Transfer to all caps
+        </button>
+        <button
+          key="deleteAllBtn"
+          className="key-button"
+          onClick={() => deleteAll()}
+        >
+          Clear
+        </button>
         <button
           key="spaceBtn"
           className="key-button"

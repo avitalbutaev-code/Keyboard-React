@@ -10,6 +10,8 @@ function Languages(props) {
         language={lang}
         handleDisplayChange={props.handleDisplayChange}
         handleBackSpace={props.handleBackSpace}
+        deleteAll={props.deleteAll}
+        allToUpperCase={props.allToUpperCase}
       />
     );
   }
