@@ -1,94 +1,22 @@
 import React from "react";
 import CommandCenter from "../CoomandCenter";
-// import { useState } from "react";
 function Keyboard({ language }) {
   console.log(language);
+  console.log("In keyboard");
   const enLetters = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
+    ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+    ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+    ["z", "x", "c", "v", "b", "n", "m"],
   ];
   const heLetters = [
-    "א",
-    "ב",
-    "ג",
-    "ד",
-    "ה",
-    "ו",
-    "ז",
-    "ח",
-    "ט",
-    "י",
-    "כ",
-    "ל",
-    "מ",
-    "נ",
-    "ס",
-    "ע",
-    "פ",
-    "צ",
-    "ק",
-    "ר",
-    "ש",
-    "ת",
+    ["ק", "ר", "א", "ט", "ו", "ן", "ם", "פ"],
+    ["ש", "ד", "ג", "כ", "ע", "י", "ח", "ל"],
+    ["ז", "ס", "ט", "צ", "ב", "נ", "מ"],
   ];
   const ruLetters = [
-    "а",
-    "б",
-    "в",
-    "г",
-    "д",
-    "е",
-    "ё",
-    "ж",
-    "з",
-    "и",
-    "й",
-    "к",
-    "л",
-    "м",
-    "н",
-    "о",
-    "п",
-    "р",
-    "с",
-    "т",
-    "у",
-    "ф",
-    "х",
-    "ц",
-    "ч",
-    "ш",
-    "щ",
-    "ъ",
-    "ы",
-    "ь",
-    "э",
-    "ю",
-    "я",
+    ["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
+    ["ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э"],
+    ["я", "ч", "с", "м", "и", "т", "ь", "б", "ю"],
   ];
 
   let letters;
@@ -107,18 +35,21 @@ function Keyboard({ language }) {
 
   return (
     <>
-      <div className="keyboard">
+      <div className="keyboard commandCenter">
         <button key="spaceBtn" className="key-button">
           Space
         </button>
         <button key="backSpaceBtn" className="key-button">
           Backspace
         </button>
-        {letters.map((letter) => (
-          <button key={letter} className="key-button">
-            {letter}
-          </button>
-        ))}
+        {letters.map((line) => {
+          line.map((letter) => {
+            <button key={letter} className="key-button">
+              {letter}
+            </button>;
+          });
+          <br />;
+        })}
       </div>
     </>
   );
