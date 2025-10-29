@@ -1,7 +1,10 @@
-import "./App.css";
-
+import CommandCenter from "./components/CoomandCenter";
 function App() {
-  return <></>;
+  return (
+    <>
+      <CommandCenter />
+    </>
+  );
 }
 
 export default App;
