@@ -1,8 +1,6 @@
 import React from "react";
 import CommandCenter from "../CoomandCenter";
-function Keyboard({ language }) {
-  console.log(language);
-  console.log("In keyboard");
+function Keyboard({ language, handleDisplayChange, handleBackSpace }) {
   const enLetters = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
     ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
@@ -36,16 +34,28 @@ function Keyboard({ language }) {
   return (
     <>
       <div className="keyboard commandCenter">
-        <button key="spaceBtn" className="key-button">
+        <button
+          key="spaceBtn"
+          className="key-button"
+          onClick={() => handleDisplayChange(" ")}
+        >
           Space
         </button>
-        <button key="backSpaceBtn" className="key-button">
+        <button
+          onClick={() => handleBackSpace()}
+          key="backSpaceBtn"
+          className="key-button"
+        >
           Backspace
         </button>
         {letters.map((line, index) => (
           <div key={index} className="keyboard-row">
             {line.map((letter) => (
-              <button key={letter} className="key-button">
+              <button
+                onClick={() => handleDisplayChange(letter)}
+                key={letter}
+                className="key-button"
+              >
                 {letter}
               </button>
             ))}
