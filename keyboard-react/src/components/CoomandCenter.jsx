@@ -1,11 +1,13 @@
 import Keyboard from "./command-components/Keyboard";
 import Languages from "./command-components/Languages";
 import { useState } from "react";
+import StyleButtons from "./command-components/StyleButtons";
 function CommandCenter({
   handleDisplayChange,
   handleBackSpace,
   deleteAll,
   allToUpperCase,
+  setCurrentStyle,
 }) {
   const [currentLanguage, setLanguage] = useState("en");
   return (
@@ -25,6 +27,7 @@ function CommandCenter({
         deleteAll={deleteAll}
         allToUpperCase={allToUpperCase}
       />
+      <StyleButtons setCurrentStyle={setCurrentStyle} />
     </>
   );
 }

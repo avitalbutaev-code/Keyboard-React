@@ -1,21 +1,40 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import CommandCenter from "./CoomandCenter";
+
 function Display() {
-  const [display, setDisplay] = useState("");
+  const [currentStyle, setCurrentStyle] = useState({
+    color: "black",
+    fontFamily: "ariel",
+    fontSize: "2rem",
+  });
+  const [display, setDisplay] = useState([]);
+
   function handleDisplayChange(character) {
-    setDisplay(display + character);
+    setDisplay([
+      ...display,
+      <span key={display.length} style={currentStyle}>
+        {character}
+      </span>,
+    ]);
   }
+
   function handleBackSpace() {
     setDisplay(display.slice(0, -1));
   }
+
   function deleteAll() {
-    setDisplay("");
+    setDisplay([]); // fixed
   }
 
   function allToUpperCase() {
-    setDisplay(display.toUpperCase());
+    const updated = display.map((element, index) => (
+      <span key={index} style={element.props.style}>
+        {String(element.props.children).toUpperCase()}
+      </span>
+    ));
+    setDisplay(updated);
   }
+
   return (
     <div>
       {display}
@@ -24,6 +43,7 @@ function Display() {
         handleBackSpace={handleBackSpace}
         deleteAll={deleteAll}
         allToUpperCase={allToUpperCase}
+        setCurrentStyle={setCurrentStyle}
       />
     </div>
   );
