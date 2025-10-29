@@ -4,9 +4,14 @@ import Keyboard from "./Keyboard";
 function Languages(props) {
   let currentLanguage = props.currentLanguage;
   function sendToKeyboard(lang, handleLanguageChange) {
-    console.log("in send");
     handleLanguageChange(lang);
-    return <Keyboard language={lang} />;
+    return (
+      <Keyboard
+        language={lang}
+        handleDisplayChange={props.handleDisplayChange}
+        handleBackSpace={props.handleBackSpace}
+      />
+    );
   }
   if (currentLanguage === "he") {
     return (
