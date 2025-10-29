@@ -42,14 +42,16 @@ function Keyboard({ language }) {
         <button key="backSpaceBtn" className="key-button">
           Backspace
         </button>
-        {letters.map((line) => {
-          line.map((letter) => {
-            <button key={letter} className="key-button">
-              {letter}
-            </button>;
-          });
-          <br />;
-        })}
+        {letters.map((line, index) => (
+          <div key={index} className="keyboard-row">
+            {line.map((letter) => (
+              <button key={letter} className="key-button">
+                {letter}
+              </button>
+            ))}
+            <br />
+          </div>
+        ))}
       </div>
     </>
   );
