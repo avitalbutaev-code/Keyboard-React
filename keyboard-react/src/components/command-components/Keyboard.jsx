@@ -44,9 +44,11 @@ function Keyboard({ language }) {
         </button>
         {letters.map((line) => {
           line.map((letter) => {
-            <button key={letter} className="key-button">
-              {letter}
-            </button>;
+            return (
+              <button key={letter} className="key-button">
+                {letter}
+              </button>
+            );
           });
           <br />;
         })}
