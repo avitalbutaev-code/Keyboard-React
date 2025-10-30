@@ -1,7 +1,8 @@
-import Keyboard from "./command-components/Keyboard";
-import Languages from "./command-components/Languages";
 import { useState } from "react";
+import Languages from "./command-components/Languages";
+import Keyboard from "./command-components/Keyboard";
 import StyleButtons from "./command-components/StyleButtons";
+
 function CommandCenter({
   handleDisplayChange,
   handleBackSpace,
@@ -10,16 +11,11 @@ function CommandCenter({
   setCurrentStyle,
 }) {
   const [currentLanguage, setLanguage] = useState("en");
+
   return (
-    <>
-      <Languages
-        currentLanguage={currentLanguage}
-        handleLanguageChange={setLanguage}
-        handleDisplayChange={handleDisplayChange}
-        handleBackSpace={handleBackSpace}
-        deleteAll={deleteAll}
-        allToUpperCase={allToUpperCase}
-      />
+    <div className="command-center">
+      <Languages currentLanguage={currentLanguage} setLanguage={setLanguage} />
+
       <Keyboard
         language={currentLanguage}
         handleDisplayChange={handleDisplayChange}
@@ -27,8 +23,9 @@ function CommandCenter({
         deleteAll={deleteAll}
         allToUpperCase={allToUpperCase}
       />
+
       <StyleButtons setCurrentStyle={setCurrentStyle} />
-    </>
+    </div>
   );
 }
 

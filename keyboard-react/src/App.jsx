@@ -1,10 +1,10 @@
-import CommandCenter from "./components/CoomandCenter";
 import Display from "./components/Display";
+
 function App() {
   return (
-    <>
+    <div className="App">
       <Display />
-    </>
+    </div>
   );
 }
 
