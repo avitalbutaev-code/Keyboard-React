@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CommandCenter from "./CoomandCenter";
-
 function Display() {
   const [currentStyle, setCurrentStyle] = useState({
     color: "black",

@@ -1,5 +1,5 @@
 import React from "react";
-import CommandCenter from "../CoomandCenter";
+import CommandCenter from "../CommandCenter";
 import { useState } from "react";
 function Keyboard({
   language,

@@ -1,5 +1,5 @@
 import React from "react";
-import CommandCenter from "../CoomandCenter";
+import CommandCenter from "../CommandCenter";
 import Keyboard from "./Keyboard";
 function Languages(props) {
   let currentLanguage = props.currentLanguage;
