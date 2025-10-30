@@ -1,42 +1,45 @@
 import React, { useState } from "react";
-import CommandCenter from "./CoomandCenter";
+import CommandCenter from "./CommandCenter";
+
 function Display() {
+  const [display, setDisplay] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({
     color: "black",
-    fontFamily: "ariel",
+    fontFamily: "Arial",
     fontSize: "2rem",
   });
-  const [display, setDisplay] = useState([]);
 
   function handleDisplayChange(character) {
-    setDisplay([
-      ...display,
-      <span key={display.length} style={currentStyle}>
-        {character}
-      </span>,
-    ]);
+    setDisplay((prev) => [...prev, { char: character, style: currentStyle }]);
   }
 
   function handleBackSpace() {
-    setDisplay(display.slice(0, -1));
+    setDisplay((prev) => prev.slice(0, -1));
   }
 
   function deleteAll() {
-    setDisplay([]); // fixed
+    setDisplay([]);
   }
 
   function allToUpperCase() {
-    const updated = display.map((element, index) => (
-      <span key={index} style={element.props.style}>
-        {String(element.props.children).toUpperCase()}
-      </span>
-    ));
-    setDisplay(updated);
+    setDisplay((prev) =>
+      prev.map((item) => ({
+        ...item,
+        char: item.char.toUpperCase(),
+      }))
+    );
   }
 
   return (
-    <div>
-      {display}
+    <div className="display">
+      <div className="text-output">
+        {display.map((item, i) => (
+          <span key={i} style={item.style}>
+            {item.char}
+          </span>
+        ))}
+      </div>
+
       <CommandCenter
         handleDisplayChange={handleDisplayChange}
         handleBackSpace={handleBackSpace}

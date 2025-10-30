@@ -1,6 +1,5 @@
-import React from "react";
-import CommandCenter from "../CommandCenter";
 import { useState } from "react";
+
 function Keyboard({
   language,
   handleDisplayChange,
@@ -8,107 +7,64 @@ function Keyboard({
   deleteAll,
   allToUpperCase,
 }) {
-  const [calledUpperCase, setUpperCase] = useState(false);
-  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-  const enLetters = [
-    ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-    ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-    ["z", "x", "c", "v", "b", "n", "m"],
-  ];
-  const heLetters = [
-    ["ק", "ר", "א", "ט", "ו", "ן", "ם", "פ"],
-    ["ש", "ד", "ג", "כ", "ע", "י", "ח", "ל"],
-    ["ז", "ס", "ט", "צ", "ב", "נ", "מ"],
-  ];
-  const ruLetters = [
-    ["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
-    ["ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э"],
-    ["я", "ч", "с", "м", "и", "т", "ь", "б", "ю"],
-  ];
+  const [caps, setCaps] = useState(false);
 
-  let letters;
-  switch (language) {
-    case "en":
-      letters = [...enLetters];
-      break;
-    case "ru":
-      letters = [...ruLetters];
-      break;
-    case "he":
-      letters = [...heLetters];
-      break;
-    default:
-  }
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  const lettersLang = {
+    en: [
+      ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+      ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+      ["z", "x", "c", "v", "b", "n", "m"],
+    ],
+    he: [
+      ["ק", "ר", "א", "ט", "ו", "ן", "ם", "פ"],
+      ["ש", "ד", "ג", "כ", "ע", "י", "ח", "ל"],
+      ["ז", "ס", "ט", "צ", "ב", "נ", "מ"],
+    ],
+    ru: [
+      ["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
+      ["ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э"],
+      ["я", "ч", "с", "м", "и", "т", "ь", "б", "ю"],
+    ],
+  };
+
+  const letters = lettersLang[language];
 
   return (
-    <>
-      <div className="keyboard commandCenter">
-        <button
-          key="upperCaseBtn"
-          className="key-button"
-          onClick={() => setUpperCase((prev) => !prev)}
-        >
-          Caps
-        </button>
-        <button
-          key="allUpperCaseBtn"
-          className="key-button"
-          onClick={() => allToUpperCase()}
-        >
-          Transfer to all caps
-        </button>
-        <button
-          key="deleteAllBtn"
-          className="key-button"
-          onClick={() => deleteAll()}
-        >
-          Clear
-        </button>
-        <button
-          key="spaceBtn"
-          className="key-button"
-          onClick={() => handleDisplayChange(" ")}
-        >
-          Space
-        </button>
-        <button
-          onClick={() => handleBackSpace()}
-          key="backSpaceBtn"
-          className="key-button"
-        >
-          Backspace
-        </button>{" "}
-        {numbers.map((letter) => (
-          <button
-            onClick={() => handleDisplayChange(letter)}
-            key={letter}
-            className="key-button"
-          >
-            {letter}
+    <div className="keyboard">
+      <div className="controls">
+        <button onClick={() => setCaps((prev) => !prev)}>Caps</button>
+        <button onClick={allToUpperCase}>All Caps</button>
+        <button onClick={deleteAll}>Clear</button>
+        <button onClick={() => handleDisplayChange(" ")}>Space</button>
+        <button onClick={handleBackSpace}>Backspace</button>
+      </div>
+
+      <div className="keys">
+        {numbers.map((num) => (
+          <button key={num} onClick={() => handleDisplayChange(num)}>
+            {num}
           </button>
         ))}
-        {letters.map((line, index) => (
-          <div key={index} className="keyboard-row">
-            {line.map((letter) => (
+
+        {letters.map((row, i) => (
+          <div key={i} className="keyboard-row">
+            {row.map((ch) => (
               <button
+                key={ch}
                 onClick={() =>
                   handleDisplayChange(
-                    calledUpperCase
-                      ? letter.toUpperCase()
-                      : letter.toLowerCase()
+                    caps ? ch.toUpperCase() : ch.toLowerCase()
                   )
                 }
-                key={letter}
-                className="key-button"
               >
-                {letter}
+                {caps ? ch.toUpperCase() : ch.toLowerCase()}
               </button>
             ))}
-            <br />
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
