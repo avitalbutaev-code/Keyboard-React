@@ -1,11 +1,11 @@
 import { useState } from "react";
-
 function Keyboard({
   language,
   handleDisplayChange,
   handleBackSpace,
   deleteAll,
   allToUpperCase,
+  handleUndo,
 }) {
   const [caps, setCaps] = useState(false);
 
@@ -34,10 +34,15 @@ function Keyboard({
     <div className="keyboard">
       <div className="controls">
         <button onClick={() => setCaps((prev) => !prev)}>Caps</button>
-        <button onClick={allToUpperCase}>All Caps</button>
-        <button onClick={deleteAll}>Clear</button>
+        <button onClick={allToUpperCase} className="special-key">
+          All Caps
+        </button>
+        <button onClick={deleteAll} className="special-key">
+          Clear
+        </button>
         <button onClick={() => handleDisplayChange(" ")}>Space</button>
         <button onClick={handleBackSpace}>Backspace</button>
+        <button onClick={() => handleUndo()}>Undo</button>
       </div>
 
       <div className="keys">

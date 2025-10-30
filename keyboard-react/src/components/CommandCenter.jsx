@@ -9,22 +9,21 @@ function CommandCenter({
   deleteAll,
   allToUpperCase,
   setCurrentStyle,
+  handleUndo,
 }) {
   const [currentLanguage, setLanguage] = useState("en");
-
   return (
     <div className="command-center">
-      <Languages currentLanguage={currentLanguage} setLanguage={setLanguage} />
-
+      <StyleButtons setCurrentStyle={setCurrentStyle} />
       <Keyboard
         language={currentLanguage}
         handleDisplayChange={handleDisplayChange}
         handleBackSpace={handleBackSpace}
         deleteAll={deleteAll}
         allToUpperCase={allToUpperCase}
+        handleUndo={handleUndo}
       />
-
-      <StyleButtons setCurrentStyle={setCurrentStyle} />
+      <Languages currentLanguage={currentLanguage} setLanguage={setLanguage} />
     </div>
   );
 }

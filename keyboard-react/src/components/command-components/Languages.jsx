@@ -4,7 +4,6 @@ function Languages({ currentLanguage, setLanguage }) {
     he: ["en", "ru"],
     ru: ["en", "he"],
   };
-
   return (
     <div className="languages">
       {languages[currentLanguage].map((lang) => (
