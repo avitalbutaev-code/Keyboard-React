@@ -12,13 +12,13 @@ function Display() {
   });
 
   function addDisplay(newDisplay) {
-    const historyCopy = history.slice(0, pointer + 1);
-    historyCopy.push(newDisplay);
-    const start = Math.max(0, historyCopy.length - maxHistory);
-    const newHistory = historyCopy.slice(start);
-    const newPointer = newHistory.length - 1;
-    setHistory(newHistory);
-    setPointer(newPointer);
+    //   const historyCopy = history.slice(0, pointer + 1);
+    //   historyCopy.push(newDisplay);
+    //   const start = Math.max(0, historyCopy.length - maxHistory);
+    //   const newHistory = historyCopy.slice(start);
+    //   const newPointer = newHistory.length - 1;
+    //   setHistory(newHistory);
+    //   setPointer(newPointer);
     setDisplay(newDisplay);
   }
 
