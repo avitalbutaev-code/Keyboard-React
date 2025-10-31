@@ -11,6 +11,7 @@ function Languages({ currentLanguage, setLanguage }) {
           {lang}
         </button>
       ))}
+      <button onClick={() => alert("Hello Earthlings!")}>👽</button>
     </div>
   );
 }
