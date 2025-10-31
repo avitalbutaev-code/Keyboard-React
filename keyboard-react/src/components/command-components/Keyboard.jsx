@@ -10,6 +10,19 @@ function Keyboard({
   const [caps, setCaps] = useState(false);
 
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ","];
+  const emojis = [
+    "😀",
+    "😎",
+    "🤓",
+    "🥳",
+    "😇",
+    "🤠",
+    "🐱",
+    "🐶",
+    "🦄",
+    "☀️",
+    "🌸",
+  ];
   const lettersLang = {
     en: [
       ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -53,7 +66,22 @@ function Keyboard({
             {num}
           </button>
         ))}
-
+        <div className="emoji-keys">
+          {" "}
+          {emojis.map((em) => (
+            <button key={em} onClick={() => handleDisplayChange(em)}>
+              {em}
+            </button>
+          ))}
+          <button
+            onClick={() => {
+              alert("Hello Earthlings!");
+              handleDisplayChange("👽");
+            }}
+          >
+            👽
+          </button>
+        </div>
         {letters.map((row, i) => (
           <div key={i} className="keyboard-row">
             {row.map((ch) => (
