@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import CommandCenter from "./CommandCenter";
 const maxHistory = 10;
 function Display() {
-  const [display, setDisplay] = useState([]);
   const [history, setHistory] = useState([[]]);
-  const [pointer, setPointer] = useState(0);
+  const display = history[history.length - 1];
   const [currentStyle, setCurrentStyle] = useState({
     color: "black",
     fontFamily: "Arial",
@@ -12,14 +11,9 @@ function Display() {
   });
 
   function addDisplay(newDisplay) {
-    //   const historyCopy = history.slice(0, pointer + 1);
-    //   historyCopy.push(newDisplay);
-    //   const start = Math.max(0, historyCopy.length - maxHistory);
-    //   const newHistory = historyCopy.slice(start);
-    //   const newPointer = newHistory.length - 1;
-    //   setHistory(newHistory);
-    //   setPointer(newPointer);
-    setDisplay(newDisplay);
+    const newHistory = [...history, newDisplay];
+    if (history.length > maxHistory) newHistory.shift();
+    setHistory(newHistory);
   }
 
   function handleDisplayChange(character) {
@@ -86,10 +80,8 @@ function Display() {
   }
 
   function handleUndo() {
-    if (pointer <= 0) return;
-    const newPointer = pointer - 1;
-    setPointer(newPointer);
-    setDisplay(history[newPointer]);
+    if (history.length <= 0) return;
+    setHistory((prev) => prev.slice(0, -1));
   }
 
   return (
