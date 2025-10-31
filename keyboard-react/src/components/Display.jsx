@@ -80,7 +80,7 @@ function Display() {
   }
 
   function handleUndo() {
-    if (history.length <= 0) return;
+    if (history.length <= 1) return;
     setHistory((prev) => prev.slice(0, -1));
   }
 
