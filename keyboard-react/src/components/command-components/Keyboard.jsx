@@ -9,7 +9,7 @@ function Keyboard({
 }) {
   const [caps, setCaps] = useState(false);
 
-  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ","];
   const lettersLang = {
     en: [
       ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -18,8 +18,8 @@ function Keyboard({
     ],
     he: [
       ["ק", "ר", "א", "ט", "ו", "ן", "ם", "פ"],
-      ["ש", "ד", "ג", "כ", "ע", "י", "ח", "ל"],
-      ["ז", "ס", "ט", "צ", "ב", "נ", "מ"],
+      ["ש", "ד", "ג", "כ", "ע", "י", "ח", "ל", "ך", "ף"],
+      ["ז", "ס", "ט", "צ", "ב", "נ", "מ", "ת", "ץ"],
     ],
     ru: [
       ["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
@@ -33,9 +33,11 @@ function Keyboard({
   return (
     <div className="keyboard">
       <div className="controls">
-        <button onClick={() => setCaps((prev) => !prev)}>Caps</button>
-        <button onClick={allToUpperCase} className="special-key">
-          All Caps
+        <button
+          onClick={() => setCaps((prev) => !prev)}
+          onDoubleClick={allToUpperCase}
+        >
+          Caps
         </button>
         <button onClick={deleteAll} className="special-key">
           Clear

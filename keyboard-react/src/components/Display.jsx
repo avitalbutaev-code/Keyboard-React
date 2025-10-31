@@ -14,10 +14,10 @@ function Display() {
   });
 
   function pushSnapshot(newSnapshot) {
-    const truncated = history.slice(0, pointer + 1);
-    truncated.push(newSnapshot);
-    const start = Math.max(0, truncated.length - maxHistory);
-    const newHistory = truncated.slice(start);
+    const historyCopy = history.slice(0, pointer + 1);
+    historyCopy.push(newSnapshot);
+    const start = Math.max(0, historyCopy.length - maxHistory);
+    const newHistory = historyCopy.slice(start);
     const newPointer = newHistory.length - 1;
 
     setHistory(newHistory);
@@ -49,6 +49,42 @@ function Display() {
     }));
     pushSnapshot(newDisplay);
   }
+  function allFontChange(newFont) {
+    if (display.length === 0) return;
+    const newDisplay = display.map((item) => ({
+      ...item,
+      style: {
+        ...item.style,
+        fontFamily: newFont,
+      },
+    }));
+    setCurrentStyle((prev) => ({ ...prev, fontFamily: newFont }));
+    pushSnapshot(newDisplay);
+  }
+  function allColorChange(newColor) {
+    if (display.length === 0) return;
+    const newDisplay = display.map((item) => ({
+      ...item,
+      style: {
+        ...item.style,
+        color: newColor,
+      },
+    }));
+    setCurrentStyle((prev) => ({ ...prev, color: newColor }));
+    pushSnapshot(newDisplay);
+  }
+  function allSizeChange(newSize) {
+    if (display.length === 0) return;
+    const newDisplay = display.map((item) => ({
+      ...item,
+      style: {
+        ...item.style,
+        fontSize: newSize,
+      },
+    }));
+    setCurrentStyle((prev) => ({ ...prev, fontSize: newSize }));
+    pushSnapshot(newDisplay);
+  }
 
   function handleUndo() {
     if (pointer <= 0) return;
@@ -74,9 +110,11 @@ function Display() {
         allToUpperCase={allToUpperCase}
         setCurrentStyle={setCurrentStyle}
         handleUndo={handleUndo}
+        allColorChange={allColorChange}
+        allFontChange={allFontChange}
+        allSizeChange={allSizeChange}
       />
     </div>
   );
 }
-
 export default Display;

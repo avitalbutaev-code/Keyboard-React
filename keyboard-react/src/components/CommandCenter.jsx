@@ -10,11 +10,19 @@ function CommandCenter({
   allToUpperCase,
   setCurrentStyle,
   handleUndo,
+  allColorChange,
+  allFontChange,
+  allSizeChange,
 }) {
   const [currentLanguage, setLanguage] = useState("en");
   return (
     <div className="command-center">
-      <StyleButtons setCurrentStyle={setCurrentStyle} />
+      <StyleButtons
+        setCurrentStyle={setCurrentStyle}
+        allColorChange={allColorChange}
+        allFontChange={allFontChange}
+        allSizeChange={allSizeChange}
+      />
       <Keyboard
         language={currentLanguage}
         handleDisplayChange={handleDisplayChange}

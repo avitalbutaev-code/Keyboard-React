@@ -1,4 +1,9 @@
-function StyleButtons({ setCurrentStyle }) {
+function StyleButtons({
+  setCurrentStyle,
+  allColorChange,
+  allFontChange,
+  allSizeChange,
+}) {
   const colors = ["black", "lime", "blue", "coral", "purple"];
   const fonts = ["Arial", "David"];
   const sizes = ["20px", "30px", "40px"];
@@ -12,6 +17,7 @@ function StyleButtons({ setCurrentStyle }) {
             key={color}
             style={{ backgroundColor: `${color}` }}
             onClick={() => setCurrentStyle((prev) => ({ ...prev, color }))}
+            onDoubleClick={() => allColorChange(color)}
           >
             {color}
           </button>
@@ -25,6 +31,7 @@ function StyleButtons({ setCurrentStyle }) {
             onClick={() =>
               setCurrentStyle((prev) => ({ ...prev, fontFamily: font }))
             }
+            onDoubleClick={() => allFontChange(font)}
           >
             {font}
           </button>
@@ -38,6 +45,7 @@ function StyleButtons({ setCurrentStyle }) {
             onClick={() =>
               setCurrentStyle((prev) => ({ ...prev, fontSize: size }))
             }
+            onDoubleClick={() => allSizeChange(size)}
           >
             {size}
           </button>
