@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import CommandCenter from "./CommandCenter";
-
 const maxHistory = 10;
-
 function Display() {
   const [display, setDisplay] = useState([]);
   const [history, setHistory] = useState([[]]);
@@ -13,32 +11,32 @@ function Display() {
     fontSize: "20px",
   });
 
-  function pushSnapshot(newSnapshot) {
+  function addDisplay(newDisplay) {
     const historyCopy = history.slice(0, pointer + 1);
-    historyCopy.push(newSnapshot);
+    historyCopy.push(newDisplay);
     const start = Math.max(0, historyCopy.length - maxHistory);
     const newHistory = historyCopy.slice(start);
     const newPointer = newHistory.length - 1;
-
     setHistory(newHistory);
     setPointer(newPointer);
-    setDisplay(newSnapshot);
+    setDisplay(newDisplay);
   }
+
   function handleDisplayChange(character) {
     const newItem = { char: character, style: { ...currentStyle } };
     const newDisplay = [...display, newItem];
-    pushSnapshot(newDisplay);
+    addDisplay(newDisplay);
   }
 
   function handleBackSpace() {
     if (display.length === 0) return;
     const newDisplay = display.slice(0, -1);
-    pushSnapshot(newDisplay);
+    addDisplay(newDisplay);
   }
 
   function deleteAll() {
     if (display.length === 0) return;
-    pushSnapshot([]);
+    addDisplay([]);
   }
 
   function allToUpperCase() {
@@ -47,7 +45,7 @@ function Display() {
       ...item,
       char: item.char.toUpperCase(),
     }));
-    pushSnapshot(newDisplay);
+    addDisplay(newDisplay);
   }
   function allFontChange(newFont) {
     if (display.length === 0) return;
@@ -59,8 +57,9 @@ function Display() {
       },
     }));
     setCurrentStyle((prev) => ({ ...prev, fontFamily: newFont }));
-    pushSnapshot(newDisplay);
+    addDisplay(newDisplay);
   }
+
   function allColorChange(newColor) {
     if (display.length === 0) return;
     const newDisplay = display.map((item) => ({
@@ -71,7 +70,7 @@ function Display() {
       },
     }));
     setCurrentStyle((prev) => ({ ...prev, color: newColor }));
-    pushSnapshot(newDisplay);
+    addDisplay(newDisplay);
   }
   function allSizeChange(newSize) {
     if (display.length === 0) return;
@@ -83,7 +82,7 @@ function Display() {
       },
     }));
     setCurrentStyle((prev) => ({ ...prev, fontSize: newSize }));
-    pushSnapshot(newDisplay);
+    addDisplay(newDisplay);
   }
 
   function handleUndo() {
